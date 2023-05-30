@@ -53,9 +53,9 @@ public class Product {
     public String toString()
     {
         return "Product{" +
-        "name='" + productName + '\'' +
-        "category='" + productCategory + '\'' +
-        ", cost=" + price +
+        "name= " + productName +
+        "\tcategory= " + productCategory +
+        "\tcost= " + price +
         '}';
     }
 }
