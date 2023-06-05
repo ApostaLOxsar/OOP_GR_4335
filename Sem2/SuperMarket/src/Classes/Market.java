@@ -6,8 +6,9 @@ import java.util.ArrayList;
 import Interfaces.iActorBehaviour;
 import Interfaces.iMarketBehaviour;
 import Interfaces.iQueueBehaviour;
+import Interfaces.iReturnOrder;
 
-public class Market implements iMarketBehaviour,iQueueBehaviour {
+public class Market implements iMarketBehaviour, iQueueBehaviour, iReturnOrder {
 
     private List<iActorBehaviour> queue;
 
@@ -89,5 +90,18 @@ public class Market implements iMarketBehaviour,iQueueBehaviour {
     }
 
 
-    
+    @Override
+    public void initiateReturn() {
+
+    }
+
+    @Override
+    public boolean returnOrder() {
+        return true;
+    }
+
+    @Override
+    public void completeReturn() {
+
+    }
 }
