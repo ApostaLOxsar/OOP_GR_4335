@@ -1,7 +1,15 @@
 package Interfaces;
 
 public interface iReturnOrder {
+    /**
+     * начало возврата товара
+     */
     void initiateReturn();
-    public boolean returnOrder();
-    void completeReturn();
+
+    /**
+     * логика возможности возврата
+     *
+     * @param actor клиент
+     */
+    public void isReturnOrder(iActorBehaviour actor);
 }

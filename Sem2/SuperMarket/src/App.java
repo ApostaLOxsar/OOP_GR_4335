@@ -11,9 +11,10 @@ public class App {
 
 
         market.acceptToMarket(client1);
+        //client2.getActor().setIsReturn(true);
         //market.acceptToMarket(client2);
         //market.acceptToMarket(client3);
-        //market.acceptToMarket(client4);
+        market.acceptToMarket(client4);
         //market.acceptToMarket(new TaxService());
 
         market.update();
