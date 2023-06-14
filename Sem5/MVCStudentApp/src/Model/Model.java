@@ -14,5 +14,10 @@ public class Model implements iGetModel {
     public List<Student> getAllStudents()
     {
         return students;
-    }    
+    }
+
+    @Override
+    public List<Student> delletStudent(List<Student> students, int number) {
+        return null;
+    }
 }

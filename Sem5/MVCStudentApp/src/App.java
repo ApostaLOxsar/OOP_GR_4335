@@ -1,15 +1,15 @@
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.jws.WebParam.Mode;
+import java.util.Scanner;
 
 import Controller.Controller;
+import Controller.Language;
 import Controller.iGetModel;
 import Controller.iGetView;
 import Model.FileModel;
 import Model.Model;
 import Model.Student;
-import View.View;
+import View.*;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -33,11 +33,26 @@ public class App {
 
        iGetModel model = new Model(students);
        iGetModel newFModel = fModel;
-       iGetView view = new View();
+       iGetView view = getLang();
 
        Controller controller = new Controller(view, newFModel);
        //controller.update();
        controller.run();
-
     }
+
+   public static String lang() {
+      System.out.println("Введите язык RUSSIAN\ninput language ENGLISH");
+      Scanner in = new Scanner(System.in);
+      return in.nextLine();
+   }
+
+   public static iGetView getLang(){
+      Language lan = Language.valueOf(lang().toUpperCase());
+      iGetView view = switch (lan) {
+         case ENGLISH, EN, ENG -> new ViewEng();
+         case RUSSIAN, RU, RUS -> new View();
+      };
+      return view;
+   }
+
 }

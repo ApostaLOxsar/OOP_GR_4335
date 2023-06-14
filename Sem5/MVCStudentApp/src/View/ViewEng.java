@@ -1,45 +1,44 @@
 package View;
 
-import java.util.List;
-import java.util.Scanner;
-
 import Controller.iGetView;
 import Model.Student;
 
-public class View implements iGetView {
+import java.util.List;
+import java.util.Scanner;
+
+public class ViewEng implements iGetView {
 
     public void printAllStudents(List<Student> students)
     {
         int count = 0;
-        System.out.println("-----Вывод списка студентов-----");
+        System.out.println("-----Output list student-----");
         for(Student stud: students)
         {
             System.out.printf("№ = %d\t %s+\n",count++, stud);
         }
-        System.out.println("-----Конец списка-----");
+        System.out.println("-----end list-----");
     }
 
     @Override
     public void getMessNumberForDell() {
-        System.out.println("Введите номер студента для удаление: ");
+        System.out.println("Enter student number to delete: ");
     }
 
     @Override
     public void getMessErrDel() {
-        System.out.println("Удаление не удалось");
+        System.out.println("Deletion failed");
     }
 
     @Override
     public String getMessInputComand() {
-        System.out.println("Введите команду");
+        System.out.println("input command");
         Scanner in = new Scanner(System.in);
         return in.nextLine();
     }
 
     @Override
     public void getMessEndProgram() {
-        System.out.println("Выход из программы");
+        System.out.println("End program");
     }
-
 
 }

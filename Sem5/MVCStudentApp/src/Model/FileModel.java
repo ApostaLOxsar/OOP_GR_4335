@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import Controller.iGetModel;
 
@@ -49,6 +50,14 @@ public class FileModel implements iGetModel {
         return students;
     }
 
+    @Override
+    public List<Student> delletStudent(List<Student> students, int number) {
+        if (number > -1) {
+            students.remove(number);
+        }
+        return students;
+    }
+
     public void saveAllStudentToFile(List<Student> students)
     {
         try(FileWriter fw = new FileWriter(fileName, true))
@@ -63,5 +72,6 @@ public class FileModel implements iGetModel {
             System.out.println(e.getMessage());
         }
     }
-    
+
+
 }
