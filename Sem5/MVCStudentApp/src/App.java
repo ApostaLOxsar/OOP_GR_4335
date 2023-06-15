@@ -1,51 +1,58 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
-import Controller.Controller;
-import Controller.Language;
-import Controller.iGetModel;
-import Controller.iGetView;
-import Model.FileModel;
-import Model.Model;
-import Model.Student;
+import Controller.*;
+import Model.*;
 import View.*;
 
 public class App {
     public static void main(String[] args) throws Exception {
-       // System.out.println("Hello, World!");
        List<Student> students = new ArrayList<Student>();
-       Student s1 = new Student("Сергей", "Иванов", 21, 101);
-       Student s2 = new Student("Андрей", "Сидоров", 22, 111);
-       Student s3 = new Student("Иван", "Петров", 22, 121);
-       Student s4 = new Student("Игорь", "Иванов", 23, 301);
-       Student s5 = new Student("Даша", "Цветкова", 25, 171);
-       Student s6 = new Student("Лена", "Незабудкина", 23, 104);
-       students.add(s1);
-       students.add(s2);
-       students.add(s3);
-       students.add(s4);
-       students.add(s5);
-       students.add(s6);
+       students.add(new Student("Сергей", "Иванов", 21, 101));
+       students.add(new Student("Иван", "Петров", 22, 121));
+       students.add(new Student("Игорь", "Иванов", 23, 301));
+       students.add(new Student("Даша", "Цветкова", 25, 171));
+       students.add(new Student("Лена-", "Незабудкина", 23, 104));
+       students.add(new Student("Андрей", "Сидоров", 22, 111));
 
-       FileModel fModel = new FileModel("StudentsDB.txt");
+
+       HashMap<Long, Student> hachListStudent = new HashMap<Long, Student>();
+       hachListStudent.put(0L, new Student("Елизавета", "Иванова", 21, 101));
+       hachListStudent.put(1L, new Student("Сергей", "Незабудкин", 21, 101));
+       hachListStudent.put(2L, new Student("Елена", "Незабудкина", 21, 101));
+       hachListStudent.put(3L, new Student("Сергей", "Цветков", 21, 101));
+       hachListStudent.put(4L, new Student("Василий", "Иванов", 21, 101));
+       hachListStudent.put(5L, new Student("Вечеслав", "Сидоров", 21, 101));
+       hachListStudent.put(6L, new Student("Дмитрий", "Иванов", 21, 101));
+
+
+       iGetModel fModel = new FileModel("StudentsDB.txt");//модель с данными из файла
        //fModel.saveAllStudentToFile(students);
+       iGetModel model = new Model(students);//модель с данными  из листа
+       iGetModel hachModel = new hachModel(hachListStudent);//модель с данными из хэшмэпа
 
-       iGetModel model = new Model(students);
-       iGetModel newFModel = fModel;
-       iGetView view = getLang();
+       iGetView view = getLang();//создание интерфейса с нужным языком
 
-       Controller controller = new Controller(view, newFModel);
-       //controller.update();
+       Controller controller = new Controller(view, hachModel);//контроллер с нужной моделью и языком(интерфейсом)
        controller.run();
     }
 
-   public static String lang() {
+   /**
+    * метод запрашивает ввод языка и возвращает код языка
+    * @return код языка
+    * приватный метод
+    */
+   private static String lang() {
       System.out.println("Введите язык RUSSIAN\ninput language ENGLISH");
       Scanner in = new Scanner(System.in);
       return in.nextLine();
    }
 
+   /**
+    * @return возвращает интерфейс с нужным языком если он доступен
+    */
    public static iGetView getLang(){
       Language lan = Language.valueOf(lang().toUpperCase());
       iGetView view = switch (lan) {

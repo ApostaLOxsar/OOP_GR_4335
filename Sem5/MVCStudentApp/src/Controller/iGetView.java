@@ -13,4 +13,5 @@ public interface iGetView {
 
     String getMessInputComand();
     void getMessEndProgram();
+    void getMesNotMet();
 }

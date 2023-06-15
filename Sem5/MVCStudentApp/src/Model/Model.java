@@ -5,19 +5,26 @@ import java.util.List;
 import Controller.iGetModel;
 
 public class Model implements iGetModel {
-    private List<Student> students;
+    private final List<Student> students;
 
     public Model(List<Student> students) {
         this.students = students;
     }
 
-    public List<Student> getAllStudents()
-    {
+    /**
+     * @return список студентов
+     */
+    public List<Student> getAllStudents() {
         return students;
     }
 
+    /**
+     * @param number номер студента который нужно удалить
+     */
     @Override
-    public List<Student> delletStudent(List<Student> students, int number) {
-        return null;
+    public void delletStudent(int number) {
+        if (number > -1) {
+            students.remove(number);
+        }
     }
 }

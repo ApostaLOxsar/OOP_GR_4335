@@ -6,8 +6,15 @@ import java.util.Scanner;
 import Controller.iGetView;
 import Model.Student;
 
+/**
+ * Метод реализации русского интерфейса
+ */
 public class View implements iGetView {
 
+    /**
+     * вывод на печать всех студентов
+     * @param students лист студентов
+     */
     public void printAllStudents(List<Student> students)
     {
         int count = 0;
@@ -19,6 +26,9 @@ public class View implements iGetView {
         System.out.println("-----Конец списка-----");
     }
 
+    /**
+     * далее методы вывода сообщений
+     */
     @Override
     public void getMessNumberForDell() {
         System.out.println("Введите номер студента для удаление: ");
@@ -39,6 +49,11 @@ public class View implements iGetView {
     @Override
     public void getMessEndProgram() {
         System.out.println("Выход из программы");
+    }
+
+    @Override
+    public void getMesNotMet() {
+        System.out.println("Этот метод в разработке");
     }
 
 

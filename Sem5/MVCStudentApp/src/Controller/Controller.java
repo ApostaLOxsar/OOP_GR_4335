@@ -18,6 +18,9 @@ public class Controller {
         this.students = new ArrayList<Student>();
     }
 
+    /**
+     * обновление списка студентов
+     */
     public void getAllStudents() {
         students = model.getAllStudents();
     }
@@ -30,21 +33,12 @@ public class Controller {
         }
     }
 
-    public void update() {
-        //MVP
-        getAllStudents();
-        if (testData()) {
-            view.printAllStudents(students);
-        } else {
-            System.out.println("Список студентов пуст!");
-        }
-
-        //MVC
-        //view.printAllStudents(model.getAllStudents());
-    }
-
+    /**
+     * цикличный метод run с основными функциями
+     */
     public void run() {
         Commands com = Commands.NONE;
+        getAllStudents();
         boolean getNewIteration = true;
         while (getNewIteration) {
 
@@ -52,40 +46,42 @@ public class Controller {
 
             com = Commands.valueOf(command.toUpperCase());
             switch (com) {
-                case EXIT:
+                case EXIT -> {
                     getNewIteration = false;
                     view.getMessEndProgram();
-                    break;
-                case LIST:
+                }
+                case LIST -> {
                     getAllStudents();
                     view.printAllStudents(students);
-                    break;
-                case DELETE:
+                }
+                case DELETE -> {
                     view.getMessNumberForDell();
-                    model.delletStudent(students, getNumber());
+                    model.delletStudent(getNumber());
+                    getAllStudents();
                     view.printAllStudents(students);
-                    break;
-                case UPDATE:
-                    update();
-                    view.printAllStudents(students);
-                    break;
-                case CREATE:
-                    /*тут должен быть метод креат*/
-                    view.printAllStudents(students);
-                    break;
-                case READ:
-                    /*тут должен быть метод реад*/
-                    view.printAllStudents(students);
-                    break;
+                }
+                case UPDATE ->
+                    /*тут должен быть метод UPDATE)*/
+                        view.getMesNotMet();
+                case CREATE ->
+                    /*тут должен быть метод CREATE*/
+                        view.getMesNotMet();
+                case READ ->
+                    /*тут должен быть метод READ*/
+                        view.getMesNotMet();
             }
 
         }
     }
 
+    /**
+     * @return целое число меньше размера списка студентов и больше -1
+     * возвращает номер студента для удаление
+     */
     private int getNumber() {
         Scanner iSc = new Scanner(System.in);
         int number = Integer.parseInt(iSc.nextLine());
-        boolean flagDel = number < students.size();
+        boolean flagDel = number < students.size() && number > -1;
         if (flagDel) {
             return number;
         } else {

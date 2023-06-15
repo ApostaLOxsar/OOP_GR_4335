@@ -6,19 +6,26 @@ import Model.Student;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * реализация английского интерфейса
+ */
 public class ViewEng implements iGetView {
 
-    public void printAllStudents(List<Student> students)
-    {
+    /**
+     * @param students лист студентов
+     */
+    public void printAllStudents(List<Student> students) {
         int count = 0;
         System.out.println("-----Output list student-----");
-        for(Student stud: students)
-        {
-            System.out.printf("№ = %d\t %s+\n",count++, stud);
+        for (Student stud : students) {
+            System.out.printf("№ = %d\t %s+\n", count++, stud);
         }
         System.out.println("-----end list-----");
     }
 
+    /**
+     * далее текст английского интерфейса
+     */
     @Override
     public void getMessNumberForDell() {
         System.out.println("Enter student number to delete: ");
@@ -41,4 +48,8 @@ public class ViewEng implements iGetView {
         System.out.println("End program");
     }
 
+    @Override
+    public void getMesNotMet() {
+        System.out.println("this method is under development");
+    }
 }
