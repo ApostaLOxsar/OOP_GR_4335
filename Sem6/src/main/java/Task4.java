@@ -1,20 +1,30 @@
 public class Task4 {
     /* Задачи со *(подсказок нет!, это же сложные задания)
         4) Переписать код в соответствии с Liskov Substitution Principle:*/
-    public class Rectangle {
+    public abstract class Shape{
         private int width;
         private int height;
-        public void setWidth(int width) {
-            this.width = width;
-        }
-        public void setHeight(int height) {
-            this.height = height;
-        }
+
+        public abstract void setWidth(int width);
+        public abstract void setHeight(int height);
         public int area() {
             return this.width * this.height;
         }
+
     }
-    public class Square extends Rectangle {
+
+    public class Rectangle extends Shape {
+        @Override
+        public void setWidth(int width) {
+            super.width = width;
+        }
+        @Override
+        public void setHeight(int height) {
+            super.height = height;
+        }
+
+    }
+    public class Square extends Shape {
         @Override
         public void setWidth(int width) {
             super.width = width;

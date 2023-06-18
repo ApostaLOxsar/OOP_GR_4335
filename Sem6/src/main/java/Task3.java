@@ -1,10 +1,6 @@
 public class Task3 {
     //3) Переписать код в соответствии с Interface Segregation Principle:
-    public interface Shape {
-        double area();
-        double volume();
-    }
-    public class Circle implements Shape {
+    public class Circle implements Area {
         private double radius;
         public Circle(double radius) {
             this.radius = radius;
@@ -13,13 +9,10 @@ public class Task3 {
         public double area() {
             return 2 * 3.14 * radius;
         }
-        @Override
-        public double volume() {
-            throw new UnsupportedOperationException();
-        }
+
     }
 
-    public class Cube implements Shape {
+    public class Cube implements Area, Volume {
         private int edge;
         public Cube(int edge) {
             this.edge = edge;
@@ -32,6 +25,15 @@ public class Task3 {
         public double volume() {
             return edge * edge * edge;
         }
+    }
+
+
+    public interface Area{
+        double area();
+    }
+
+    public interface Volume{
+        double volume();
     }
 
     //Подсказка: круг не объемная фигура и этому классу не нужен метод volume().
