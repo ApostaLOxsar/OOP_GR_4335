@@ -21,7 +21,7 @@ public class View implements iGetView {
         System.out.println("-----Вывод списка студентов-----");
         for(Student stud: students)
         {
-            System.out.printf("№ = %d\t %s+\n",count++, stud);
+            System.out.printf("№ = %d\t %s\n",count++, stud);
         }
         System.out.println("-----Конец списка-----");
     }
